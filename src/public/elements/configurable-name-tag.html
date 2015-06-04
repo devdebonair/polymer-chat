@@ -1,0 +1,17 @@
+<dom-module is="configurable-name-tag">
+	<template>
+		This is <b>{{owner}}</b>'s configurable-name-tag element.
+	</template>
+</dom-module>
+
+<script type="text/javascript">
+	Polymer({
+		is: "configurable-name-tag",
+		properties: {
+			owner: {
+				type: String,
+				value: "Anonymous."
+			}
+		}
+	});
+</script>

@@ -1,0 +1,15 @@
+<dom-module is="name-tag">
+	<template>
+		This is <b>{{owner}}</b>'s name-tag element.
+	</template>
+</dom-module>
+
+<script type="text/javascript">
+	Polymer({
+		is: "name-tag",
+		ready: function()
+		{
+			this.owner = "Vincent";
+		}
+	});
+</script>
