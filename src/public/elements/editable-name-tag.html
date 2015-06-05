@@ -1,16 +1,20 @@
 <link rel="import" type="text/html" href="/lib/iron-input/iron-input.html">
 
 <dom-module is="editable-name-tag">
-	<style></style>
-	<template></template>
+	<template>
+		<p>This is <strong>{{owner}}</strong>'s editable-name-tag.</p>
+		<input is="iron-input" bind-value="{{owner}}" placeholder="Your name here..."></input>
+	</template>
 </dom-module>
 
 <script type="text/javascript">
 	Polymer({
 		is: "editable-name-tag",
-		ready: function()
-		{
-
+		properties: {
+			owner: {
+				type: String,
+				value: 'Anonymous'
+			}
 		}
 	});
 </script>
