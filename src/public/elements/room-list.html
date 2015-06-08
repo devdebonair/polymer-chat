@@ -1,0 +1,85 @@
+<link rel="import" type="text/html" href="/elements/room-panel.html">
+<link rel="import" type="text/html" href="/lib/paper-input/paper-input.html">
+<link rel="import" type="text/html" href="/lib/iron-input/iron-input.html">
+<link rel="import" type="text/html" href="/lib/iron-selector/iron-selector.html">
+
+<dom-module id="room-list">
+	<style type="text/css">
+		room-panel {
+			cursor: pointer;
+			margin-top: 3%;
+			margin-bottom: 3%;
+			margin-left: 1%;
+		}
+		.iron-selected {
+			background: #eee;
+		}
+	</style>
+	<template>
+		<section class="flex layout">
+			<paper-input-container>
+				<input is="iron-input" on-keyup="filter" placeholder="Search">
+			</paper-input-container>
+		</section>
+		<iron-selector id="selector" selected="0" on-click="select">
+			<template is="dom-repeat" items="{{rooms}}">
+				<room-panel
+					name="[[item.roomName]]" 
+					avatar="[[getAvatar()]]" 
+					message="[[getRecentMessage(item)]]"
+					value="[[item.roomId]]">
+				</room-panel>
+			</template>
+		</iron-selector>
+	</template>
+</dom-module>
+
+<script type="text/javascript">
+	Polymer({
+		is: "room-list",
+		ready: function()
+		{
+			this.rooms = document.querySelector('chat-model').user.rooms;
+		},
+		getRecentMessage: function(room)
+		{
+			var message_arr = room.messages.sort(function(message_one, message_two){
+				var date_one = new Date(message_one.timestamp);
+				var date_two = new Date(message_two.timestamp);
+				return (date_one.getTime() - date_two.getTime());
+			});
+			return message_arr[message_arr.length-1].content;
+		},
+		getAvatar: function()
+		{
+			return 'http://api.adorable.io/avatars/285/'+ Math.random() + '.io.png';
+		},
+		filter: function(e)
+		{
+			var rooms = document.getElementsByTagName('room-panel');
+			var regex = new RegExp(e.target.value,'i');
+			for(var i = 0; i < rooms.length; i++)
+			{
+				if(!regex.test(rooms[i].name))
+				{
+					rooms[i].style.display = 'none';
+				}
+				else
+				{
+					rooms[i].style.display = 'block';	
+				}
+			}
+		},
+		select: function()
+		{
+			var selectedRoom = this.$.selector.selectedItem.value;
+			for(var i = 0; i < this.rooms.length; i++)
+			{
+				if(this.rooms[i].roomId === selectedRoom)
+				{
+					document.querySelector('chat-model').openRoom(selectedRoom);
+				}
+			}
+		}
+	});
+</script>

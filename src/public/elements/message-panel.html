@@ -1,0 +1,88 @@
+<dom-module id="message-panel">
+	<style>
+		.image-container {
+			position: relative;
+		}
+
+		img {
+			position: absolute;
+			bottom: 0px;
+			border-radius: 50%;
+		}
+
+		.message-container {
+			font-size: 14px;
+			border-radius: 1.3em;
+			padding: 1px 12px;
+			word-wrap: break-word;
+			line-height: 1.28;
+		}
+
+		.sender {
+			color: #FFF;
+			background-color: #0084ff;
+		}
+
+		.receiver {
+			color: #141823;
+			background-color: #f1f0f0;
+		}
+
+		#message_wrapper {
+			padding-left: 40px;
+			max-width: 505px;
+		}
+		.username {
+			font-size: 12px;
+			padding: 15px;
+		}
+	</style>
+	<template>
+		<section id="wrapper" class="horizontal layout">
+			<div class="image-container">
+				<img height="28" width="28" src="{{avatar}}">
+			</div>
+
+			<section id="message_wrapper">
+				<span class="username">{{username}}</span>
+				<div id="message_container" class="message-container">
+					<p>{{message}}</p>
+				</div>
+			</section>
+		</section>
+	</template>
+</dom-module>
+
+<script type="text/javascript">
+	Polymer({
+		is: "message-panel",
+		properties: {
+			sender: Boolean,
+			username: {
+				type: String,
+				value: 'Anonymous'
+			},
+			message: {
+				type: String,
+				value: 'Text goes here.'
+			},
+			avatar: {
+				type: String,
+				value: 'http://api.adorable.io/avatars/285/swag.io.png'
+			}
+		},
+		attached: function()
+		{
+			if(this.sender)
+			{
+				this.$.wrapper.className = 'horizontal-reverse layout'
+				this.$.message_container.className += ' sender';
+				this.$.message_wrapper.style.padding = "0px 15px 0px 0px";
+			}
+			else
+			{
+				this.$.message_container.className += ' receiver';	
+			}
+		}
+	});
+</script>

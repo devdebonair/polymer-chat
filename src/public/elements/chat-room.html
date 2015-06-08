@@ -1,0 +1,47 @@
+<link rel="import" type="text/html" href="/elements/message-panel.html">
+
+<dom-module id="chat-room">
+	<style>
+		.chat-room-wrapper {
+			padding: 0px 40px 0px 15px;
+		}
+
+		.message-panel-wrapper {
+			padding-bottom: 15px;
+		}
+	</style>
+	<template>
+		<div class="chat-room-wrapper flex layout">
+			<template is="dom-repeat" items="{{messages}}">
+				<div class="message-panel-wrapper">
+					<message-panel 
+						username="[[item.sender]]" 
+						message="[[item.content]]" 
+						sender="[[isSender(item.sender)]]"
+						avatar="[[getAvatar(item.sender)]]">
+					</message-panel>
+				</div>
+			</template>
+		</div>
+	</template>
+</dom-module>
+
+<script type="text/javascript">
+	Polymer({
+		is: "chat-room",
+		ready: function()
+		{
+			this.messages = document.querySelector('chat-model').user.rooms[0].messages;
+		},
+		isSender: function(name)
+		{
+			var username = document.querySelector('chat-model').user.username.toLowerCase();
+			name = name.toLowerCase();
+			return (username === name);
+		},
+		getAvatar: function(name)
+		{
+			return 'http://api.adorable.io/avatars/285/'+name+'.io.png';
+		}
+	});
+</script>

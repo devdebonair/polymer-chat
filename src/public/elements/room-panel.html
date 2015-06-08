@@ -1,0 +1,55 @@
+<dom-module id="room-panel">
+	<style type="text/css">
+		.image-container {
+			padding-top: 5px;
+		}
+		img {
+			border-radius: 50%;
+		}
+		.description {
+			margin-left: 3%;
+			padding-bottom: 25px;
+			height: auto;
+			line-height: 0px;
+			white-space: nowrap;
+			border-bottom: solid #DEDEDE thin;
+		}
+		.description span {
+			color: rgba(0, 0, 0, .40);
+		}
+		.description > h4, span {
+			font-size: 14px;
+		}
+	</style>
+	<template>
+		<div id="room-panel-container" class="horizontal layout">
+			<div class="image-container">
+				<img src="{{avatar}}" height="50" width="50">
+			</div>
+			<div class="flex layout description">
+				<h4>{{name}}</h4>
+				<span>{{message}}</span>
+			</div>
+		</div>
+	</template>
+</dom-module>
+
+<script type="text/javascript">
+	Polymer({
+		is: "room-panel",
+		properties: {
+			name: {
+				type: String,
+				value: ''
+			},
+			message: {
+				type: String,
+				value: ''
+			},
+			avatar: {
+				type: String,
+				value: ''
+			}
+		}
+	});
+</script>

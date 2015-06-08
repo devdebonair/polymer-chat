@@ -1,0 +1,109 @@
+<script type="text/javascript">
+	Polymer({
+		is: "chat-model",
+
+		ready: function()
+		{
+			this.user = {
+				username: 'Vincent Moore',
+				rooms: [
+					{
+						users: ['Arvell Webb Jr.'],
+						messages: [
+							{
+								sender: 'Arvell Webb Jr.',
+								content: 'i am interested.',
+								timestamp: new Date('2012').toString()
+							},
+							{
+								sender: 'Vincent Moore',
+								content: 'interested in what???',
+								timestamp: new Date('2013').toString()
+							},
+							{
+								sender: 'Arvell Webb Jr.',
+								content: 'sent this to the wrong room.',
+								timestamp: new Date('2014').toString()
+							},
+							{
+								sender: 'Vincent Moore',
+								content: 'oh thats cool.',
+								timestamp: new Date('2015').toString()
+							},
+							{
+								sender: 'Vincent Moore',
+								content: 'what u up to',
+								timestamp: new Date('2016').toString()
+							},
+							{
+								sender: 'Arvell Webb Jr.',
+								content: 'imma teach you niggas how to get bitches ill try to be brief. to get women you gotta understand women first is to realize what women want and they\'re emotional feelings are not connected us guys we want something we get it, our feelings match our actions. girls on the other hand don\'t work like this, this is why they are confusing and usually contradicting with everything especially decisions. I assume this is because female hormones periods n all dat shit. anyway when it comes to men the female species generally likes the dominant most masculine as any species of female, for humans dominance is strength, looks, popularity, money, athleticism, and aggressiveness. girls are brained wash as a child expecting guys to do everything they want, but guys that do everything a girl wants are not masculine and they get the gay bestfriend treatment hence the friendzone. a guy that\'s too masculine does not help women in the long run because they do not meet their needs. to be that nigga you gotta balance both you gotta show her you genuinely like her by doing what she wants but at the right times you gotta show her you aint a bitch, it\'s almost like a plot twist it keeps them entertained. which is why you need to argue with a bitch sometimes. they hate the arguing but they love making up more than to not argue at all psychologically. the shit is complex, bitches probably didnt even know this about themselves but it makes sense to them though.',
+								timestamp: new Date('2017').toString()
+							},
+							{
+								sender: 'Vincent Moore',
+								content: 'shut yo dumb ass up',
+								timestamp: new Date('2018').toString()
+							},
+							{
+								sender: 'Arvell Webb Jr.',
+								content: 'you know im right bruh',
+								timestamp: new Date('2019').toString()
+							},
+							{
+								sender: 'Vincent Moore',
+								content: 'i mean you got a point but that don\'t change the fact that you still sound stupid.',
+								timestamp: new Date('2020').toString()
+							},
+							{
+								sender: 'Vincent Moore',
+								content: 'just got my job at Azalea Health bruh.',
+								timestamp: new Date('2021').toString()
+							},
+							{
+								sender: 'Arvell Webb Jr.',
+								content: 'that wassup..... what do you do there?',
+								timestamp: new Date('2022').toString()
+							},
+							{
+								sender: 'Vincent Moore',
+								content: 'I am a software intern which basically means i get to sit around an watch youtube and stuff.',
+								timestamp: new Date('2023').toString()
+							},
+						],
+						roomName: 'Arvell Webb Jr.',
+						roomId: '12345'
+					},
+					{
+						users: ['Arvell Webb Jr.'],
+						messages: [
+							{
+								sender: 'Arvell Webb Jr.',
+								content: 'imma teach you niggas how to get bitches ill try to be brief. to get women you gotta understand women first is to realize what women want and they\'re emotional feelings are not connected us guys we want something we get it, our feelings match our actions. girls on the other hand don\'t work like this, this is why they are confusing and usually contradicting with everything especially decisions. I assume this is because female hormones periods n all dat shit. anyway when it comes to men the female species generally likes the dominant most masculine as any species of female, for humans dominance is strength, looks, popularity, money, athleticism, and aggressiveness. girls are brained wash as a child expecting guys to do everything they want, but guys that do everything a girl wants are not masculine and they get the gay bestfriend treatment hence the friendzone. a guy that\'s too masculine does not help women in the long run because they do not meet their needs. to be that nigga you gotta balance both you gotta show her you genuinely like her by doing what she wants but at the right times you gotta show her you aint a bitch, it\'s almost like a plot twist it keeps them entertained. which is why you need to argue with a bitch sometimes. they hate the arguing but they love making up more than to not argue at all psychologically. the shit is complex, bitches probably didnt even know this about themselves but it makes sense to them though.',
+								timestamp: new Date('2017').toString()
+							}
+						],
+						roomName: 'Arvell Webb Jr.',
+						roomId: '754634'
+					}
+				],
+				activeRoom: ''
+			};
+		},
+		attached: function()
+		{
+			this.user.activeRoom = this.user.rooms[0].roomId;
+		},
+		openRoom: function(roomId)
+		{
+			for(var i = 0; i < this.user.rooms.length; i++)
+			{
+				if(this.user.rooms[i].roomId === roomId)
+				{
+					this.user.activeRoom = roomId;
+				}
+			}
+			// recieve pusher notifications and handle new messages
+		}
+	});
+</script>
