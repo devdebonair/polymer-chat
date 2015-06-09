@@ -21,7 +21,7 @@
 				<input is="iron-input" on-keyup="filter" placeholder="Search">
 			</paper-input-container>
 		</section>
-		<iron-selector id="selector" selected="0" on-click="select">
+		<iron-selector id="selector" selected="0" on-iron-select="select">
 			<template is="dom-repeat" items="{{rooms}}">
 				<room-panel
 					name="[[item.roomName]]" 
@@ -72,12 +72,13 @@
 		},
 		select: function()
 		{
-			var selectedRoom = this.$.selector.selectedItem.value;
+			var selectedRoom = this.$.selector.selectedItem;
 			for(var i = 0; i < this.rooms.length; i++)
 			{
-				if(this.rooms[i].roomId === selectedRoom)
+				if(this.rooms[i].roomId === selectedRoom.value)
 				{
-					document.querySelector('chat-model').openRoom(selectedRoom);
+					document.querySelector('chat-model').openRoom(selectedRoom.value);
+					break;
 				}
 			}
 		}
