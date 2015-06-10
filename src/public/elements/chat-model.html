@@ -96,14 +96,26 @@
 		},
 		openRoom: function(roomId)
 		{
+			this.activeRoom = this._findRoom(roomId).roomId;
+			// recieve pusher notifications and handle new messages
+		},
+		getActiveRoom: function()
+		{
+			if(!this.activeRoom)
+			{
+				return false;
+			}
+			return this._findRoom(this.activeRoom);
+		},
+		_findRoom: function(roomId)
+		{
 			for(var i = 0; i < this.user.rooms.length; i++)
 			{
 				if(this.user.rooms[i].roomId === roomId)
 				{
-					this.user.activeRoom = roomId;
+					return this.user.rooms[i];
 				}
 			}
-			// recieve pusher notifications and handle new messages
 		}
 	});
 </script>
