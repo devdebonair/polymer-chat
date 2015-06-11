@@ -1,12 +1,16 @@
 <script type="text/javascript">
 	Polymer({
 		is: "chat-model",
-
-		ready: function()
-		{
-			this.user = {
-				username: 'Vincent Moore',
-				rooms: [
+		properties: {
+			username: {
+				type: String,
+				notify: true,
+				value: 'Vincent Moore'
+			},
+			rooms: {
+				type: Array,
+				notify: true,
+				value: [
 					{
 						users: ['Arvell Webb Jr.'],
 						messages: [
@@ -69,7 +73,7 @@
 								sender: 'Vincent Moore',
 								content: 'I am a software intern which basically means i get to sit around an watch youtube and stuff.',
 								timestamp: new Date('2023').toString()
-							},
+							}
 						],
 						roomName: 'Arvell Webb Jr.',
 						roomId: '12345'
@@ -86,36 +90,37 @@
 						roomName: 'Arvell Webb Jr.',
 						roomId: '754634'
 					}
-				],
-				activeRoom: ''
-			};
+				]
+			},
+			activeRoomName: {
+				type: String,
+				notify: true,
+			},
+			activeRoom: {
+				type: Object,
+				notify: true,
+				computed: '_findRoom(activeRoomName)'
+			}
 		},
-		attached: function()
+		ready: function()
 		{
-			this.user.activeRoom = this.user.rooms[0].roomId;
+			this.activeRoomName = this.rooms[0].roomId;
 		},
 		openRoom: function(roomId)
 		{
-			this.activeRoom = this._findRoom(roomId).roomId;
+			this.activeRoomName = this._findRoom(roomId).roomId;
 			// recieve pusher notifications and handle new messages
-		},
-		getActiveRoom: function()
-		{
-			if(!this.activeRoom)
-			{
-				return false;
-			}
-			return this._findRoom(this.activeRoom);
 		},
 		_findRoom: function(roomId)
 		{
-			for(var i = 0; i < this.user.rooms.length; i++)
+			for(var i = 0; i < this.rooms.length; i++)
 			{
-				if(this.user.rooms[i].roomId === roomId)
+				if(this.rooms[i].roomId === roomId)
 				{
-					return this.user.rooms[i];
+					return this.rooms[i];
 				}
 			}
+			return {};
 		}
 	});
 </script>

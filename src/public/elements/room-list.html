@@ -16,6 +16,7 @@
 		}
 	</style>
 	<template>
+		<p>{{model.activeRoomName}}</p>
 		<section class="flex layout">
 			<paper-input-container>
 				<input is="iron-input" on-keyup="filter" placeholder="Search">
@@ -24,10 +25,10 @@
 		<iron-selector id="selector" selected="0" on-iron-select="select">
 			<template is="dom-repeat" items="{{rooms}}">
 				<room-panel
-					name="[[item.roomName]]" 
-					avatar="[[getAvatar()]]" 
-					message="[[getRecentMessage(item)]]"
-					value="[[item.roomId]]">
+					name="{{item.roomName}}" 
+					avatar="{{getAvatar()}}" 
+					message="{{getRecentMessage(item)}}"
+					value="{{item.roomId}}">
 				</room-panel>
 			</template>
 		</iron-selector>
@@ -39,7 +40,11 @@
 		is: "room-list",
 		ready: function()
 		{
-			this.rooms = document.querySelector('chat-model').user.rooms;
+			this.model = document.querySelector('#chat-model');
+			if(this.model.rooms)
+			{
+				this.rooms = this.model.rooms;
+			}
 		},
 		getRecentMessage: function(room)
 		{
@@ -73,14 +78,8 @@
 		select: function()
 		{
 			var selectedRoom = this.$.selector.selectedItem;
-			for(var i = 0; i < this.rooms.length; i++)
-			{
-				if(this.rooms[i].roomId === selectedRoom.value)
-				{
-					document.querySelector('chat-model').openRoom(selectedRoom.value);
-					break;
-				}
-			}
+			this.model.openRoom(selectedRoom.value);
+			console.log(this.model.activeRoom.roomId);
 		}
 	});
 </script>

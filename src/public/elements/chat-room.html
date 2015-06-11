@@ -15,10 +15,10 @@
 			<template is="dom-repeat" items="{{messages}}">
 				<div class="message-panel-wrapper">
 					<message-panel 
-						username="[[item.sender]]" 
-						message="[[item.content]]" 
-						sender="[[isSender(item.sender)]]"
-						avatar="[[getAvatar(item.sender)]]">
+						username="{{item.sender}}" 
+						message="{{item.content}}" 
+						sender="{{isSender(item.sender)}}"
+						avatar="{{getAvatar(item.sender)}}">
 					</message-panel>
 				</div>
 			</template>
@@ -31,11 +31,15 @@
 		is: "chat-room",
 		ready: function()
 		{
-			this.messages = document.querySelector('chat-model').user.rooms[0].messages;
+			this.activeRoom = document.querySelector('#chat-model').activeRoom;
+			if(this.activeRoom && this.activeRoom.messages)
+			{
+				this.messages = this.activeRoom.messages;
+			}
 		},
 		isSender: function(name)
 		{
-			var username = document.querySelector('chat-model').user.username.toLowerCase();
+			var username = document.querySelector('#chat-model').username.toLowerCase();
 			name = name.toLowerCase();
 			return (username === name);
 		},
