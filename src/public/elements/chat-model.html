@@ -4,11 +4,13 @@
 		properties: {
 			username: {
 				type: String,
+				reflectToAttribute: true,
 				notify: true,
 				value: 'Vincent Moore'
 			},
 			rooms: {
 				type: Array,
+				reflectToAttribute: true,
 				notify: true,
 				value: [
 					{
@@ -94,10 +96,12 @@
 			},
 			activeRoomName: {
 				type: String,
+				reflectToAttribute: true,
 				notify: true,
 			},
 			activeRoom: {
 				type: Object,
+				reflectToAttribute: true,
 				notify: true,
 				computed: '_findRoom(activeRoomName)'
 			}

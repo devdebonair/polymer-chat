@@ -31,15 +31,13 @@
 		is: "chat-room",
 		ready: function()
 		{
-			this.activeRoom = document.querySelector('#chat-model').activeRoom;
-			if(this.activeRoom && this.activeRoom.messages)
-			{
-				this.messages = this.activeRoom.messages;
-			}
+			this.model = document.querySelector('#chat-model');
+			this.activeRoom = this.model.activeRoom || {};
+			this.messages = this.activeRoom.messages || [];
 		},
 		isSender: function(name)
 		{
-			var username = document.querySelector('#chat-model').username.toLowerCase();
+			var username = this.model.username.toLowerCase();
 			name = name.toLowerCase();
 			return (username === name);
 		},
