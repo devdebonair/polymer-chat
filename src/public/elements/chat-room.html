@@ -29,17 +29,17 @@
 <script type="text/javascript">
 	Polymer({
 		is: "chat-room",
+		properties: {
+			messages: Array,
+			username: String
+		},
 		ready: function()
 		{
-			this.model = document.querySelector('#chat-model');
-			this.activeRoom = this.model.activeRoom || {};
-			this.messages = this.activeRoom.messages || [];
+			console.log(this.messages);
 		},
 		isSender: function(name)
 		{
-			var username = this.model.username.toLowerCase();
-			name = name.toLowerCase();
-			return (username === name);
+			return (this.username.toLowerCase() === name.toLowerCase());
 		},
 		getAvatar: function(name)
 		{

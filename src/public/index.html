@@ -3,51 +3,18 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Polymer Chat</title>
-
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<script src="/lib/webcomponentsjs/webcomponents.min.js" type="text/javascript" charset="utf-8"></script>
-	<link rel="import" type="text/html" href="/lib/polymer/polymer.html">
-	<link rel="import" type="text/html" href="/lib/iron-flex-layout/classes/iron-flex-layout.html">
-	<link rel="import" type="text/html" href="/elements/chat-model.html">
-	<link rel="import" type="text/html" href="/elements/room-list.html">
-	<link rel="import" type="text/html" href="/elements/chat-room.html">
-
+	<link rel="import" type="text/html" href="/elements/chat-app.html">
 	<style type="text/css">
 		body {
 			font-family: 'Roboto';
 			height: 100vh;
 			width: 100vw;
 		}
-
-		#room-list-container {
-			overflow-x: hidden;
-			overflow-y: scroll;
-			height: 100vh;
-			max-width: 320px;
-			min-width: 320px;
-			width: 25%;
-			border-right: solid #DEDEDE thin;
-		}
-
-		#messages {
-			overflow-x: hidden;
-			overflow-y: scroll;
-			height: 100vh;
-		}
 	</style>
 </head>
-<body class="fullbleed horizontal layout">
-	<chat-model id="chat-model"></chat-model>
-
-	<section>
-		<div id="room-list-container">
-			<room-list></room-list>
-		</div>
-	</section>
-
-	<section id="messages" class="flex layout">
-		<chat-room></chat-room>
-	</section>
-</body>
+	<body class="fullbleed horizontal layout">
+		<chat-app></chat-app>
+	</body>
 </html>
-

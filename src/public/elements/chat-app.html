@@ -1,0 +1,49 @@
+<link rel="import" type="text/html" href="/lib/polymer/polymer.html">
+<link rel="import" type="text/html" href="/lib/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" type="text/html" href="/elements/chat-model.html">
+<link rel="import" type="text/html" href="/elements/room-list.html">
+<link rel="import" type="text/html" href="/elements/chat-room.html">
+
+<dom-module id="chat-app">
+	<style>
+		#room-list-container {
+			overflow-x: hidden;
+			overflow-y: scroll;
+			height: 100vh;
+			max-width: 320px;
+			min-width: 320px;
+			width: 25%;
+			border-right: solid #DEDEDE thin;
+		}
+
+		#messages {
+			overflow-x: hidden;
+			overflow-y: scroll;
+			height: 100vh;
+		}
+	</style>
+	<template>
+		<chat-model id="chatModel"></chat-model>
+		
+		<section>
+			<div id="room-list-container">
+				<room-list rooms="{{model.rooms}}"></room-list>
+			</div>
+		</section>
+
+		<section id="messages" class="flex layout">
+			<chat-room messages="{{model.activeRoom.messages}}" username="{{model.username}}"></chat-room>
+		</section>
+
+	</template>
+</dom-module>
+
+<script type="text/javascript">
+	Polymer({
+		is: "chat-app",
+		ready: function()
+		{
+			this.model = this.$.chatModel;
+		}
+	});
+</script>

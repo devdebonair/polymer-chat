@@ -37,13 +37,12 @@
 <script type="text/javascript">
 	Polymer({
 		is: "room-list",
-		ready: function()
+		properties: {
+			rooms: Array
+		},
+		attached: function()
 		{
-			this.model = document.querySelector('#chat-model');
-			if(this.model.rooms)
-			{
-				this.rooms = this.model.rooms;
-			}
+		
 		},
 		getRecentMessage: function(room)
 		{
@@ -77,8 +76,7 @@
 		select: function()
 		{
 			var selectedRoom = this.$.selector.selectedItem;
-			this.model.openRoom(selectedRoom.value);
-			console.log(this.model.activeRoom.roomId);
+			// this.model.openRoom(selectedRoom.value);
 		}
 	});
 </script>
