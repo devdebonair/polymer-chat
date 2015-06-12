@@ -38,11 +38,14 @@
 	Polymer({
 		is: "room-list",
 		properties: {
-			rooms: Array
+			rooms: {
+				type: Array,
+				value: []
+			}
 		},
-		attached: function()
+		ready: function()
 		{
-		
+			console.log(this.rooms);
 		},
 		getRecentMessage: function(room)
 		{

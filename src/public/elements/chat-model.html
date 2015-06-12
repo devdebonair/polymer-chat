@@ -106,7 +106,7 @@
 				computed: '_findRoom(activeRoomName)'
 			}
 		},
-		ready: function()
+		attached: function()
 		{
 			this.activeRoomName = this.rooms[0].roomId;
 		},

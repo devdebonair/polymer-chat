@@ -24,15 +24,16 @@
 	</style>
 	<template>
 		<chat-model id="chatModel"></chat-model>
-		
-		<section>
-			<div id="room-list-container">
-				<room-list rooms="{{model.rooms}}"></room-list>
-			</div>
-		</section>
+		<section class="horizontal layout">
+			<section>
+				<div id="room-list-container">
+					<room-list id="roomList" rooms="{{model.rooms}}"></room-list>
+				</div>
+			</section>
 
-		<section id="messages" class="flex layout">
-			<chat-room messages="{{model.activeRoom.messages}}" username="{{model.username}}"></chat-room>
+			<section id="messages" class="flex layout">
+				<chat-room messages="{{model.activeRoom.messages}}" username="{{model.username}}"></chat-room>
+			</section>
 		</section>
 
 	</template>
