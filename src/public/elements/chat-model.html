@@ -4,13 +4,11 @@
 		properties: {
 			username: {
 				type: String,
-				reflectToAttribute: true,
 				notify: true,
 				value: 'Vincent Moore'
 			},
 			rooms: {
 				type: Array,
-				reflectToAttribute: true,
 				notify: true,
 				value: [
 					{
@@ -96,24 +94,17 @@
 			},
 			activeRoomName: {
 				type: String,
-				reflectToAttribute: true,
 				notify: true,
 			},
-			activeRoom: {
+			active: {
 				type: Object,
-				reflectToAttribute: true,
 				notify: true,
-				computed: '_findRoom(activeRoomName)'
+				computed: '_findRoom(active_room_name)'
 			}
 		},
 		attached: function()
 		{
 			this.activeRoomName = this.rooms[0].roomId;
-		},
-		openRoom: function(roomId)
-		{
-			this.activeRoomName = this._findRoom(roomId).roomId;
-			// recieve pusher notifications and handle new messages
 		},
 		_findRoom: function(roomId)
 		{

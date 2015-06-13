@@ -40,12 +40,11 @@
 		properties: {
 			rooms: {
 				type: Array,
-				value: []
+				notify: true
 			}
 		},
 		ready: function()
 		{
-			console.log(this.rooms);
 		},
 		getRecentMessage: function(room)
 		{
@@ -79,7 +78,7 @@
 		select: function()
 		{
 			var selectedRoom = this.$.selector.selectedItem;
-			// this.model.openRoom(selectedRoom.value);
+			this.fire('room-select', { roomName: selectedRoom.value });
 		}
 	});
 </script>

@@ -32,7 +32,7 @@
 			</section>
 
 			<section id="messages" class="flex layout">
-				<chat-room messages="{{model.activeRoom.messages}}" username="{{model.username}}"></chat-room>
+				<chat-room messages="{{model.active.messages}}" username="{{model.username}}"></chat-room>
 			</section>
 		</section>
 
@@ -42,9 +42,24 @@
 <script type="text/javascript">
 	Polymer({
 		is: "chat-app",
+		listeners: {
+			'room-select': 'roomSelectHandler'
+		},
 		ready: function()
 		{
 			this.model = this.$.chatModel;
+			this.model.addEventListener('active-changed', function(){
+				console.log('active room changed');
+			});
+			this.model.addEventListener('username-changed', function(){
+				console.log('username changed');
+			});
+		},
+		roomSelectHandler: function(data)
+		{
+			console.log('changing room name to ('+ data.detail.roomName +')'+'...');
+			this.set('model.activeName', data.detail.roomName);
+			this.set('model.username', 'swagger');
 		}
 	});
 </script>
